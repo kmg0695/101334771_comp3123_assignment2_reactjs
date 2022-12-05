@@ -16,7 +16,9 @@ routes.get("/employees", async (req, res) => {
 routes.post("/employees", async (req, res) => {
   try {
     const newEmp = new EmployeeModel(req.body);
-    const confAdd = await newEmp.save();
+    const confAdd = await newEmp.save().then((data) => {
+      console.log(data);
+    });
     return res.status(201).send({
       status: true,
       message: "New employee saved in database.",
@@ -26,7 +28,7 @@ routes.post("/employees", async (req, res) => {
       date: Date(),
     });
   } catch (error) {
-    return res.status(400).send(error);
+    return res.status(400).send(console.log(error));
   }
 });
 
@@ -68,9 +70,9 @@ routes.put("/employees/:eid", async (req, res) => {
   });
 });
 
-routes.delete("/employees", async (req, res) => {
+routes.delete("/employees/:eid", async (req, res) => {
   try {
-    const byeEmp = await EmployeeModel.findByIdAndDelete(req.query.eid);
+    const byeEmp = await EmployeeModel.deleteOne(req.query.eid);
     if (!byeEmp) {
       return res.status(400).send({
         status: false,

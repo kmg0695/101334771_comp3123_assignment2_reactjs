@@ -3,14 +3,17 @@
 import express, { json, urlencoded } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import empRoutes from "./routes/employees.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(cors());
 
 mongoose
   .connect(process.env.DB_CONNECT_STRING, {
@@ -25,6 +28,7 @@ mongoose
     process.exit();
   });
 
+app.use("/api/user", userRoutes);
 app.use("/api/emp", empRoutes);
 
 app.route("/").get((req, res) => {

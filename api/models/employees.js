@@ -5,22 +5,21 @@ const { Schema } = mongoose;
 const empSchema = new Schema({
   first_name: {
     type: String,
-    required: true,
     maxLength: 100,
+    required: true,
   },
   last_name: {
     type: String,
-    required: true,
     maxLength: 50,
+    required: true,
   },
   email: {
     type: String,
-    unique: true,
     maxLength: 50,
+    required: true,
   },
   gender: {
     type: String,
-    unique: true,
     maxLength: 25,
     enum: ["Male", "Female", "Other"],
   },
