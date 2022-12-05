@@ -24,7 +24,7 @@ export default function Update() {
       salary: empSalary,
     };
     axios
-      .put(`httpp://20.2.128.239:8001/api/emp/employees/${id}`, updateEmp)
+      .put(`http://20.2.128.239:8001/api/emp/employees/${id}`, updateEmp)
       .then(() => {
         navigate("/read");
       });

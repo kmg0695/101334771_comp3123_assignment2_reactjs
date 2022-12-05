@@ -11,7 +11,7 @@ export default function Read() {
 
   const getData = () => {
     cancelToken.cancel();
-    axios.get(`httpp://20.2.128.239:8001/api/emp/employees`).then((res) => {
+    axios.get(`http://20.2.128.239:8001/api/emp/employees`).then((res) => {
       setAPIData(res.data);
     });
   };
@@ -29,7 +29,7 @@ export default function Read() {
   const onDelete = (id) => {
     cancelToken.cancel();
     axios
-      .delete(`httpp://20.2.128.239:8001/api/emp/employees/${id}`)
+      .delete(`http://20.2.128.239:8001/api/emp/employees/${id}`)
       .then(() => {
         getData();
       });
