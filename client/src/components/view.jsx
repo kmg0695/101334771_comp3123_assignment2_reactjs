@@ -1,9 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Table } from "semantic-ui-react";
 
 export default function View() {
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailAddress, setEmail] = useState("");
+  const [empGender, setGender] = useState("");
+  const [empSalary, setSalary] = useState(0);
+
+  useEffect(() => {
+    setFirstName(sessionStorage.getItem("First Name"));
+    setLastName(sessionStorage.getItem("Last Name"));
+    setEmail(sessionStorage.getItem("Email Address"));
+    setGender(sessionStorage.getItem("Gender"));
+    setSalary(sessionStorage.getItem("Salary"));
+  }, []);
+
   return (
     <Table celled>
       <Table.Header>
@@ -17,39 +31,22 @@ export default function View() {
         </Table.Row>
       </Table.Header>
 
-      {API.map((employee) => (
-        // eslint-disable-next-line no-underscore-dangle
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{employee.first_name}</Table.Cell>
-            <Table.Cell>{employee.last_name}</Table.Cell>
-            <Table.Cell>{employee.email}</Table.Cell>
-            <Table.Cell>{employee.gender}</Table.Cell>
-            <Table.Cell>{employee.salary}</Table.Cell>
-            <Link to="/view">
-              <Table.Cell>
-                <Button color="blue" onClick={() => setData(employee)}>
-                  View
-                </Button>
-              </Table.Cell>
-            </Link>
-            <Link to="/update">
-              <Table.Cell>
-                <Button color="yellow" onClick={() => setData(employee)}>
-                  Update
-                </Button>
-              </Table.Cell>
-            </Link>
-            <Button
-              color="red"
-              // eslint-disable-next-line dot-notation
-              onClick={() => onDelete(employee._id)}
-            >
-              Delete
-            </Button>
-          </Table.Row>
-        </Table.Body>
-      ))}
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>{firstName}</Table.Cell>
+          <Table.Cell>{lastName}</Table.Cell>
+          <Table.Cell>{emailAddress}</Table.Cell>
+          <Table.Cell>{empGender}</Table.Cell>
+          <Table.Cell>{empSalary}</Table.Cell>
+          <Button
+            color="red"
+            // eslint-disable-next-line dot-notation
+            onClick={() => navigate("/read")}
+          >
+            Back
+          </Button>
+        </Table.Row>
+      </Table.Body>
     </Table>
   );
 }
