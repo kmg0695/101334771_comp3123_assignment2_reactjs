@@ -23,7 +23,7 @@ export default function Create() {
       gender: empGender,
     };
     axios
-      .post("http://localhost:8001/api/emp/employees", newEmployee)
+      .post("httpp://20.2.128.239:8001/api/emp/employees", newEmployee)
       .then((res) => {
         if (res.status === 201) {
           redirect("/read");

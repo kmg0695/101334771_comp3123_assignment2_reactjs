@@ -20,11 +20,13 @@ export default function Auth() {
       username: uname,
       password: pword,
     };
-    axios.post("http://localhost:8001/api/user/login", creds).then((res) => {
-      if (res.status === 200) {
-        history("/read");
-      }
-    });
+    axios
+      .post("httpp://20.2.128.239:8001/api/user/login", creds)
+      .then((res) => {
+        if (res.status === 200) {
+          history("/read");
+        }
+      });
   };
 
   const signup = () => {
@@ -33,7 +35,7 @@ export default function Auth() {
       username: uname,
       password: pword,
     };
-    axios.post("http://localhost:8001/api/user/signup", creds).then(() => {
+    axios.post("httpp://20.2.128.239:8001/api/user/signup", creds).then(() => {
       changeAuthMode();
     });
   };
