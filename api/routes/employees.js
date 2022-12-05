@@ -16,9 +16,7 @@ routes.get("/employees", async (req, res) => {
 routes.post("/employees", async (req, res) => {
   try {
     const newEmp = new EmployeeModel(req.body);
-    const confAdd = await newEmp.save().then((data) => {
-      console.log(data);
-    });
+    const confAdd = await newEmp.save();
     return res.status(201).send({
       status: true,
       message: "New employee saved in database.",
@@ -28,7 +26,7 @@ routes.post("/employees", async (req, res) => {
       date: Date(),
     });
   } catch (error) {
-    return res.status(400).send(console.log(error));
+    return res.status(400).send(error);
   }
 });
 
