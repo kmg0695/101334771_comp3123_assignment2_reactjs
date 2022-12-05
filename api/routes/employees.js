@@ -70,7 +70,7 @@ routes.put("/employees/:eid", async (req, res) => {
 
 routes.delete("/employees/:eid", async (req, res) => {
   try {
-    const byeEmp = await EmployeeModel.deleteOne(req.params.eid, req.body);
+    const byeEmp = await EmployeeModel.deleteOne(req.params.eid);
     if (!byeEmp) {
       return res.status(400).send({
         status: false,
